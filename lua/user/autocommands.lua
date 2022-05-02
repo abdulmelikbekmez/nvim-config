@@ -29,11 +29,20 @@ vim.cmd([[
     autocmd User AlphaReady set showtabline=0 | autocmd BufUnload <buffer> set showtabline=2
   augroup end
 
-  augroup _lsp
-    autocmd!
-    autocmd BufWritePre * lua vim.lsp.buf.formatting()
-  augroup end
+  " augroup _lsp
+  "   autocmd!
+  "   autocmd BufWritePre * lua vim.lsp.buf.formatting()
+  " augroup end
 ]])
+
+local group = vim.api.nvim_create_augroup("Auto Formatting", { clear = true })
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+    callback = vim.lsp.buf.formatting_sync,
+    group = group
+})
+
+
 
 -- Autoformat
 -- augroup _lsp
