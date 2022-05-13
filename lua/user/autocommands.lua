@@ -42,6 +42,15 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     group = group
 })
 
+-- FileType dap-repl lua require('dap.ext.autocompl').attach()
+
+vim.api.nvim_create_autocmd("FileType", {
+    pattern = "dap-repl",
+    callback = function()
+        require("dap.ext.autocompl").attach()
+    end,
+})
+
 
 
 -- Autoformat

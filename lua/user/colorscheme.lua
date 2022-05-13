@@ -21,6 +21,7 @@
 -- Nord Theme
 vim.g.nord_contrast = true
 vim.cmd([[colorscheme nord]])
+require("nord").set()
 --
 
 -- require("onedark").setup({
