@@ -34,7 +34,7 @@ local options = {
     sidescrolloff = 8,
     laststatus = 3, -- Global status line
     -- guifont = "CaskaydiaCove Nerd Font Mono",-- the font used in graphical neovim applications
-    guifont = "JetBrainsMono Nerd Font", -- the font used in graphical neovim applications
+    -- guifont = "JetBrainsMono Nerd Font", -- the font used in graphical neovim applications
 }
 
 vim.opt.shortmess:append("c")
