@@ -6,7 +6,7 @@ Make sure to remove or move your current `nvim` directory
 
 **IMPORTANT** requires `Neovim 0.7 release` version
 ```
-https://github.com/kotoldadas/nvim-config.git ~/.config/nvim
+git clone https://github.com/kotoldadas/nvim-config.git ~/.config/nvim
 ```
 
 Run `nvim` and wait for the plugins to be installed 
