@@ -1,9 +1,44 @@
-local status_ok, _ = pcall(require, "lspconfig")
-if not status_ok then
-    return
-end
+local mason = require("mason")
+local mason_lspconfig = require("mason-lspconfig")
 
-require("user.lsp.lsp-installer")
-require("user.lsp.handlers").setup()
+
+mason.setup({
+    ui = {
+        icons = {
+            package_installed = "✓",
+            package_pending = "➜",
+            package_uninstalled = "✗"
+        },
+        border = "none"
+    }
+})
+mason_lspconfig.setup({
+    ensure_installed = { "sumneko_lua", "rust_analyzer" },
+})
+
+local handlers = require("user.lsp.handlers")
+
+local configured_servers = { "jsonls", "sumneko_lua", "texlab", "jdtls" }
+
+mason_lspconfig.setup_handlers({
+    function(server)
+
+        local opts = {
+            on_attach = handlers.on_attach,
+            capabilities = handlers.capabilities,
+        }
+
+        for _, s in ipairs(configured_servers) do
+            if server == s then
+                local server_opts = require(table.concat({ "user.lsp.settings", s }, "."))
+                opts = vim.tbl_deep_extend("force", server_opts, opts)
+            end
+        end
+
+        require("lspconfig")[server].setup(opts)
+    end
+})
+
+handlers.setup()
 require("user.lsp.null-ls")
-require("user.lsp.luasnip")
+--[[ require("user.lsp.luasnip") ]]
