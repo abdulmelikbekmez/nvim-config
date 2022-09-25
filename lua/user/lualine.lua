@@ -132,5 +132,6 @@ require 'lualine'.setup {
         'fugitive',
         'man',
         'quickfix',
+        'toggleterm'
     }
 }
