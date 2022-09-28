@@ -1,3 +1,8 @@
+local ok, lualine = pcall(require, "lualine")
+if not ok then
+    return
+end
+
 local lsp = vim.lsp
 -- For mode, only show the first char (or first two chars to distinguish
 -- different VISUALs) plus a fancy icon
@@ -51,7 +56,7 @@ local function lsp_client_names()
     return " LSP:" .. msg
 end
 
-require 'lualine'.setup {
+lualine.setup {
     options = {
         icons_enabled = true,
         theme = 'auto',

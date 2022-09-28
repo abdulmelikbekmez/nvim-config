@@ -1,4 +1,8 @@
-local dap = require('dap')
+local ok, dap = pcall(require, "dap")
+if not ok then
+    return
+end
+
 dap.adapters.python = {
     type = 'executable';
     command = "/home/abdulmelik/.virtualenvs/debugpy/bin/python";

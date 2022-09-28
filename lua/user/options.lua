@@ -35,7 +35,7 @@ local options = {
     laststatus = 3, -- Global status line
     -- guifont = "CaskaydiaCove Nerd Font Mono",-- the font used in graphical neovim applications
     -- guifont = "JetBrainsMono Nerd Font", -- the font used in graphical neovim applications
-    guicursor = "n-v-c-i:block"
+    --[[ guicursor = "n-v-c-i:block" ]]
 }
 
 vim.opt.shortmess:append("c")
