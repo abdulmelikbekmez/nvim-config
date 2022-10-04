@@ -44,8 +44,17 @@
 
 ----------------------
 
-local c = require('vscode.colors')
-require('vscode').setup({
+local ok_vscode, vscode = pcall(require, "vscode")
+if not ok_vscode then
+    return
+end
+
+local ok_vscode_colors, c = pcall(require, "vscode.colors")
+if not ok_vscode_colors then
+    return
+end
+
+vscode.setup({
     -- Enable transparent background
     transparent = false,
 
