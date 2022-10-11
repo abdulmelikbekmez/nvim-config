@@ -44,19 +44,24 @@ M.setup = function()
     })
 end
 
-local function lsp_highlight_document(client)
+
+local function lsp_highlight_document(client, bufnr)
     -- Set autocommands conditional on server_capabilities
-    if client.resolved_capabilities.document_highlight then
-        vim.api.nvim_exec(
-            [[
-      augroup lsp_document_highlight
-        autocmd! * <buffer>
-        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
-        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
-      augroup END
-    ]]       ,
-            false
-        )
+    if client.server_capabilities.documentHighlightProvider then
+        vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
+        vim.api.nvim_clear_autocmds { buffer = bufnr, group = "lsp_document_highlight" }
+        vim.api.nvim_create_autocmd("CursorHold", {
+            callback = vim.lsp.buf.document_highlight,
+            buffer = bufnr,
+            group = "lsp_document_highlight",
+            desc = "Document Highlight",
+        })
+        vim.api.nvim_create_autocmd("CursorMoved", {
+            callback = vim.lsp.buf.clear_references,
+            buffer = bufnr,
+            group = "lsp_document_highlight",
+            desc = "Clear All the References",
+        })
     end
 end
 
@@ -85,7 +90,7 @@ M.on_attach = function(client, bufnr)
     --[[     client.resolved_capabilities.document_formatting = false ]]
     --[[ end ]]
     lsp_keymaps(bufnr)
-    lsp_highlight_document(client)
+    lsp_highlight_document(client, bufnr)
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
