@@ -59,12 +59,9 @@ Next we need to install python support (node is optional)
 ## Debugging
 
 # Python
-```
-mkdir .virtualenvs
-cd .virtualenvs
-python -m venv debugpy
-debugpy/bin/python -m pip install debugpy
-```
+
+To debug python apps you need to instal debugpy. You can install debugpy with mason plugin.
+To open mason press <SPACE>lI , search for python with <C-f> (control - f) and install debugpy.
 
 **NOTE** make sure you have [node](https://nodejs.org/en/) installed, I recommend a node manager like [fnm](https://github.com/Schniz/fnm).
 
