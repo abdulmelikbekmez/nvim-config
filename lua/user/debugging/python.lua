@@ -5,8 +5,7 @@ end
 
 dap.adapters.python = {
     type = 'executable';
-    command = "/home/abdulmelik/.virtualenvs/debugpy/bin/python";
-    args = { '-m', 'debugpy.adapter' };
+    command = "debugpy-adapter";
 }
 
 dap.configurations.python = {
