@@ -1,5 +1,12 @@
-local mason = require("mason")
-local mason_lspconfig = require("mason-lspconfig")
+local ok_mason, mason = pcall(require, "mason")
+if not ok_mason then
+    return
+
+end
+local ok_mason_lsp_config, mason_lspconfig = pcall(require, "mason-lspconfig")
+if not ok_mason_lsp_config then
+    return
+end
 
 
 mason.setup({
