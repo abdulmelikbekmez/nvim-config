@@ -185,6 +185,7 @@ local mappings = {
         name = "Debugging",
         b = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
         r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Open Repl" },
+        q = { "<cmd>lua require'dapui'.close()<cr>", "Close UI" },
     }
 }
 
