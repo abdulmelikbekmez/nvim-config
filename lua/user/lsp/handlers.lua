@@ -45,26 +45,6 @@ M.setup = function()
 end
 
 
-local function lsp_highlight_document(client, bufnr)
-    -- Set autocommands conditional on server_capabilities
-    if client.server_capabilities.documentHighlightProvider then
-        local group = vim.api.nvim_create_augroup("lsp_document_highlight", { clear = true })
-        vim.api.nvim_clear_autocmds { buffer = bufnr, group = group }
-        vim.api.nvim_create_autocmd("CursorHold", {
-            callback = vim.lsp.buf.document_highlight,
-            buffer = bufnr,
-            group = group,
-            desc = "Document Highlight",
-        })
-        vim.api.nvim_create_autocmd("CursorMoved", {
-            callback = vim.lsp.buf.clear_references,
-            buffer = bufnr,
-            group = group,
-            desc = "Clear All the References",
-        })
-    end
-end
-
 local function lsp_keymaps(bufnr)
     local opts = { noremap = true, silent = true }
     vim.api.nvim_buf_set_keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
@@ -89,7 +69,15 @@ M.on_attach = function(client, bufnr)
         client.server_capabilities.documentFormattingProvider = false
     end
     lsp_keymaps(bufnr)
-    lsp_highlight_document(client, bufnr)
+
+    --[[ local illuminate_ok, illuminate = pcall(require, "illuminate") ]]
+    --[[ if not illuminate_ok then ]]
+    --[[     return ]]
+    --[[ end ]]
+    --[[]]
+    --[[ illuminate.on_attach(client) ]]
+
+
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

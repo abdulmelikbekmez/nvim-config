@@ -64,11 +64,10 @@ return packer.startup(function(use)
     -- use "lunarvim/darkplus.nvim"
 
     use("Mofiqul/vscode.nvim")
+    use "EdenEast/nightfox.nvim" -- Packer
     -- use("projekt0n/github-nvim-theme")
     use("shaunsingh/nord.nvim")
 
-    -- Using Packer
-    use("navarasu/onedark.nvim")
 
     -- cmp plugins
     use("hrsh7th/nvim-cmp") -- The completion plugin
@@ -91,12 +90,14 @@ return packer.startup(function(use)
 
     use("tamago324/nlsp-settings.nvim") -- language server settings defined in json for
     use("jose-elias-alvarez/null-ls.nvim") -- for formatters and linters
+    use("RRethy/vim-illuminate")
 
     -- Telescope
     use("nvim-telescope/telescope.nvim")
     use('nvim-telescope/telescope-ui-select.nvim')
 
-    -- Treesitter
+
+    -- Treesitter and UI
     use({
         "nvim-treesitter/nvim-treesitter",
         run = ":TSUpdate",
