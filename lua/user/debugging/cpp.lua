@@ -39,3 +39,5 @@ dap.configurations.cpp = {
         end,
     },
 }
+
+dap.configurations.c = dap.configurations.cpp
