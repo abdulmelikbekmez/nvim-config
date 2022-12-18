@@ -46,16 +46,19 @@ end
 
 
 local function lsp_keymaps(bufnr)
-    local opts = { noremap = true, silent = true }
-    local keymap = vim.api.nvim_buf_set_keymap
-    keymap(bufnr, "n", "gD", "<cmd>lua vim.lsp.buf.declaration()<CR>", opts)
-    keymap(bufnr, "n", "gd", "<cmd>lua vim.lsp.buf.definition()<CR>", opts)
-    keymap(bufnr, "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts)
-    keymap(bufnr, "n", "gI", "<cmd>Telescope lsp_implementations<CR>", opts)
-    keymap(bufnr, "n", "<C-k>", "<cmd>lua vim.lsp.buf.signature_help()<CR>", opts)
-    keymap(bufnr, "n", "gr", "<cmd>Telescope lsp_references<CR>", opts)
-    keymap(bufnr, "n", "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "rounded" })<CR>', opts)
-    keymap(bufnr, "n", "gl", '<cmd>lua vim.diagnostic.open_float({ border = "rounded" })<CR>', opts)
+
+    local nmap = function(keys, func, desc)
+        if desc then
+            desc = 'LSP: ' .. desc
+        end
+        vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+    end
+    nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
+    nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+    nmap("K", vim.lsp.buf.hover, "Hover")
+    nmap("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+    nmap("<c-k>", vim.lsp.buf.signature_help, "Signature Help")
+    nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
 end
 
 M.on_attach = function(client, bufnr)
@@ -63,15 +66,6 @@ M.on_attach = function(client, bufnr)
     --[[     client.server_capabilities.documentFormattingProvider = false ]]
     --[[ end ]]
     lsp_keymaps(bufnr)
-
-    --[[ local illuminate_ok, illuminate = pcall(require, "illuminate") ]]
-    --[[ if not illuminate_ok then ]]
-    --[[     return ]]
-    --[[ end ]]
-    --[[]]
-    --[[ illuminate.on_attach(client) ]]
-
-
 end
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()

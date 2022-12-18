@@ -36,6 +36,7 @@ local options = {
     -- guifont = "CaskaydiaCove Nerd Font Mono",-- the font used in graphical neovim applications
     -- guifont = "JetBrainsMono Nerd Font", -- the font used in graphical neovim applications
     --[[ guicursor = "n-v-c-i:block" ]]
+    incsearch = true
 }
 
 vim.opt.shortmess:append("c")

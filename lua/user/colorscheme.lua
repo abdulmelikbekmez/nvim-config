@@ -44,51 +44,51 @@
 
 ----------------------
 
---[[ local ok_vscode, vscode = pcall(require, "vscode") ]]
---[[ if not ok_vscode then ]]
---[[     return ]]
---[[ end ]]
---[[]]
---[[ local ok_vscode_colors, c = pcall(require, "vscode.colors") ]]
---[[ if not ok_vscode_colors then ]]
---[[     return ]]
---[[ end ]]
---[[]]
---[[ vscode.setup({ ]]
---[[     -- Enable transparent background ]]
---[[     transparent = false, ]]
---[[]]
---[[     -- Enable italic comment ]]
---[[     italic_comments = true, ]]
---[[]]
---[[     -- Disable nvim-tree background color ]]
---[[     disable_nvimtree_bg = true, ]]
---[[]]
---[[     -- Override colors (see ./lua/vscode/colors.lua) ]]
---[[     color_overrides = { ]]
---[[         vscLineNumber = '#FFFFFF', ]]
---[[     }, ]]
---[[]]
---[[     -- Override highlight groups (see ./lua/vscode/theme.lua) ]]
---[[     group_overrides = { ]]
---[[         -- this supports the same val table as vim.api.nvim_set_hl ]]
---[[         -- use colors from this colorscheme by requiring vscode.colors! ]]
---[[         Cursor = { fg = c.vscDarkBlue, bg = c.vscLightGreen, bold = true }, ]]
---[[     } ]]
---[[ }) ]]
-local ok_nightfox, nightfox = pcall(require, "nightfox")
-if not ok_nightfox then
+local ok_vscode, vscode = pcall(require, "vscode")
+if not ok_vscode then
     return
 end
 
-nightfox.setup({
-    options = {
-        styles = {
-            comments = "italic",
-            keywords = "bold",
-            types = "italic,bold",
-        }
+local ok_vscode_colors, c = pcall(require, "vscode.colors")
+if not ok_vscode_colors then
+    return
+end
+
+vscode.setup({
+    -- Enable transparent background
+    transparent = false,
+
+    -- Enable italic comment
+    italic_comments = true,
+
+    -- Disable nvim-tree background color
+    disable_nvimtree_bg = true,
+
+    -- Override colors (see ./lua/vscode/colors.lua)
+    color_overrides = {
+        vscLineNumber = '#FFFFFF',
+    },
+
+    -- Override highlight groups (see ./lua/vscode/theme.lua)
+    group_overrides = {
+        -- this supports the same val table as vim.api.nvim_set_hl
+        -- use colors from this colorscheme by requiring vscode.colors!
+        Cursor = { fg = c.vscDarkBlue, bg = c.vscLightGreen, bold = true },
     }
 })
-
-vim.cmd("colorscheme nordfox")
+--[[ local ok_nightfox, nightfox = pcall(require, "nightfox") ]]
+--[[ if not ok_nightfox then ]]
+--[[     return ]]
+--[[ end ]]
+--[[]]
+--[[ nightfox.setup({ ]]
+--[[     options = { ]]
+--[[         styles = { ]]
+--[[             comments = "italic", ]]
+--[[             keywords = "bold", ]]
+--[[             types = "italic,bold", ]]
+--[[         } ]]
+--[[     } ]]
+--[[ }) ]]
+--[[]]
+--[[ vim.cmd("colorscheme nordfox") ]]
