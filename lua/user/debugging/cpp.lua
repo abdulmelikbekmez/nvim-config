@@ -13,7 +13,19 @@ dap.adapters.cppdbg = {
 }
 dap.configurations.cpp = {
     {
-        name = "Launch file",
+        name = "Current file",
+        type = "cppdbg",
+        request = "launch",
+        program = "${fileBasenameNoExtension}",
+        cwd = '${workspaceFolder}',
+        linux = {
+            MIMode = "gdb",
+            miDebuggerPath = "/usr/bin/gdb"
+        },
+        stopAtEntry = true,
+    },
+    {
+        name = "Selected File",
         type = "cppdbg",
         request = "launch",
         program = function()
