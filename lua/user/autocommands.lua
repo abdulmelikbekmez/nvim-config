@@ -32,16 +32,16 @@ vim.cmd([[
     au BufNewFile,BufRead *.wgsl set filetype=wgsl
 ]])
 
-local group = vim.api.nvim_create_augroup("Auto Formatting", { clear = true })
 
 vim.api.nvim_create_autocmd("BufWritePre", {
     callback = vim.lsp.buf.formatting_sync,
-    group = group
+    group = vim.api.nvim_create_augroup("Auto Formatting", { clear = true })
 })
 
 -- FileType dap-repl lua require('dap.ext.autocompl').attach()
 
 vim.api.nvim_create_autocmd("FileType", {
+    group = vim.api.nvim_create_augroup("Dap Autocompletion", { clear = true }),
     pattern = "dap-repl",
     callback = function()
         require("dap.ext.autocompl").attach()

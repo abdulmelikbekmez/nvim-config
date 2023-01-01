@@ -96,11 +96,11 @@ telescope.setup({
         --[[ }, ]]
         quickfix = {
             theme = "cursor"
-        }
+        },
 
-        -- find_files = {
-        -- 	find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
-        -- },
+        find_files = {
+            find_command = { "fdfind", "--type", "f", "--strip-cwd-prefix" },
+        }
         -- Default configuration for builtin pickers goes here:
         -- picker_name = {
         --   picker_config_key = value,
