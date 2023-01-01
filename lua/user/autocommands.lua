@@ -47,11 +47,3 @@ vim.api.nvim_create_autocmd("FileType", {
         require("dap.ext.autocompl").attach()
     end,
 })
-
-
-
--- Autoformat
--- augroup _lsp
---   autocmd!
---   autocmd BufWritePre * lua vim.lsp.buf.formatting()
--- augroup end
