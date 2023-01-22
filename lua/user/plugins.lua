@@ -104,6 +104,8 @@ return packer.startup(function(use)
     })
     use("JoosepAlviste/nvim-ts-context-commentstring")
 
+    use("rcarriga/nvim-notify")
+
     -- Git
     use("lewis6991/gitsigns.nvim")
 

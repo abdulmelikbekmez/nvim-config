@@ -8,6 +8,8 @@ if not snip_status_ok then
     return
 end
 
+local ts_utils = require("nvim-treesitter.ts_utils")
+
 require("luasnip/loaders/from_vscode").lazy_load()
 
 local check_backspace = function()
@@ -104,12 +106,26 @@ cmp.setup({
             return vim_item
         end,
     },
-    sources = {
-        { name = "nvim_lsp" },
+    sources = cmp.config.sources({
+        {
+            name = "nvim_lsp",
+            --[[ entry_filter = function(entry, ctx) ]]
+            --[[     local kind = entry:get_kind() ]]
+            --[[     local node = ts_utils.get_node_at_cursor():type() ]]
+            --[[     if node == "arguments" then ]]
+            --[[         if kind == 6 then ]]
+            --[[             return true ]]
+            --[[         else ]]
+            --[[             return false ]]
+            --[[         end ]]
+            --[[     end ]]
+            --[[     return true ]]
+            --[[ end ]]
+        },
         { name = "luasnip" },
         { name = "path" },
         { name = "buffer", keyword_length = 5 },
-    },
+    }),
     confirm_opts = {
         behavior = cmp.ConfirmBehavior.Replace,
         select = false,

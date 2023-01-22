@@ -41,10 +41,12 @@ local options = {
 
 vim.opt.shortmess:append("c")
 
+
 for k, v in pairs(options) do
     vim.opt[k] = v
 end
 
-vim.cmd("set whichwrap+=<,>,[,],h,l")
-vim.cmd([[set iskeyword+=-]])
-vim.cmd([[set formatoptions-=cro]]) -- TODO: this doesn't seem to work
+local ok_notify, notify = pcall(require, "notify")
+if ok_notify then
+    vim.notify = notify
+end
