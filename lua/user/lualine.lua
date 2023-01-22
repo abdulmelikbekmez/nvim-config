@@ -114,6 +114,9 @@ lualine.setup {
                 --[[ symbols = { added = '+', modified = '~', removed = '-' }, ]]
                 symbols = { added = ' ', modified = ' ', removed = ' ' },
             },
+            {
+                "overseer"
+            }
         },
         lualine_y = {
             'filetype'

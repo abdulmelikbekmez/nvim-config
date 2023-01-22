@@ -45,8 +45,3 @@ vim.opt.shortmess:append("c")
 for k, v in pairs(options) do
     vim.opt[k] = v
 end
-
-local ok_notify, notify = pcall(require, "notify")
-if ok_notify then
-    vim.notify = notify
-end

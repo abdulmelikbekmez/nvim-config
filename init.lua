@@ -22,3 +22,5 @@ require("user.autocommands")
 
 require("user.lsp-signature")
 require("user.debugging")
+require("user.notify")
+require("user.overseer")

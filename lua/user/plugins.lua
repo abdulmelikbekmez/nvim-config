@@ -105,6 +105,10 @@ return packer.startup(function(use)
     use("JoosepAlviste/nvim-ts-context-commentstring")
 
     use("rcarriga/nvim-notify")
+    use({
+        'stevearc/overseer.nvim',
+        config = function() require('overseer').setup() end
+    })
 
     -- Git
     use("lewis6991/gitsigns.nvim")
