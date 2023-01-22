@@ -105,6 +105,9 @@ return packer.startup(function(use)
     use("JoosepAlviste/nvim-ts-context-commentstring")
 
     use("rcarriga/nvim-notify")
+    use('stevearc/dressing.nvim')
+
+    -- Task Management
     use({
         'stevearc/overseer.nvim',
         config = function() require('overseer').setup() end
