@@ -110,7 +110,6 @@ return packer.startup(function(use)
     -- Task Management
     use({
         'stevearc/overseer.nvim',
-        config = function() require('overseer').setup() end
     })
 
     -- Git
