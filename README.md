@@ -5,8 +5,15 @@
 ### Must!
 Make sure that this tools installed on your machine.
 
-- [fd](https://github.com/sharkdp/fd)  - for searching file from filesystem
+- [fd](https://github.com/sharkdp/fd)  - for searching file from filesystem 
+```
+cargo install fd-find
+```
 - [ripgrep](https://github.com/BurntSushi/ripgrep) - for searching word or patterns from your workspace.
+
+```
+cargo install ripgrep
+```
 
 
 ### Optional
