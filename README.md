@@ -1,12 +1,23 @@
-# Neovim from scratch
+# Neovim Config
 
-## Try out this config
+## Dependencies
+
+### Must!
+Make sure that this tools installed on your machine.
+
+- [fd](https://github.com/sharkdp/fd)  - for searching file from filesystem
+- [ripgrep](https://github.com/BurntSushi/ripgrep) - for searching word or patterns from your workspace.
+
+
+### Optional
+- Nodejs - for Language Server Protocols (pyright ex.)
+## Installation
 
 Make sure to remove or move your current `nvim` directory
 
-**IMPORTANT** requires `Neovim 0.7 release` version
+**IMPORTANT** requires `Neovim 0.8 release` version
 ```
-git clone https://github.com/kotoldadas/nvim-config.git ~/.config/nvim
+git clone https://github.com/abdulmelikbekmez/nvim-config.git ~/.config/nvim
 ```
 
 Run `nvim` and wait for the plugins to be installed 
