@@ -4,9 +4,9 @@ local M = {}
 M.setup = function()
     local signs = {
         { name = "DiagnosticSignError", text = "" },
-        { name = "DiagnosticSignWarn", text = "" },
-        { name = "DiagnosticSignHint", text = "" },
-        { name = "DiagnosticSignInfo", text = "" },
+        { name = "DiagnosticSignWarn",  text = "" },
+        { name = "DiagnosticSignHint",  text = "" },
+        { name = "DiagnosticSignInfo",  text = "" },
     }
 
     for _, sign in ipairs(signs) do
@@ -14,7 +14,6 @@ M.setup = function()
     end
 
     local config = {
-
         virtual_text = true,
         -- show signs
         signs = {
@@ -35,30 +34,24 @@ M.setup = function()
 
     vim.diagnostic.config(config)
 
-    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-        border = "rounded",
-    })
-
-    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-        border = "rounded",
-    })
+    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, { border = "rounded" })
+    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, { border = "rounded" })
 end
 
 
 local function lsp_keymaps(bufnr)
-
     local nmap = function(keys, func, desc)
         if desc then
             desc = 'LSP: ' .. desc
         end
-        vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
+        vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc, noremap = true, silent = true })
     end
     nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
     nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
     nmap("K", vim.lsp.buf.hover, "Hover")
-    nmap("gI", require("telescope.builtin").lsp_implementations, "[G]oto [I]mplementation")
+    nmap("gI", function() require("telescope.builtin").lsp_implementations() end, "[G]oto [I]mplementation")
     nmap("<c-k>", vim.lsp.buf.signature_help, "Signature Help")
-    nmap("gr", require("telescope.builtin").lsp_references, "[G]oto [R]eferences")
+    nmap("gr", function() require("telescope.builtin").lsp_references() end, "[G]oto [R]eferences")
 end
 
 M.on_attach = function(client, bufnr)

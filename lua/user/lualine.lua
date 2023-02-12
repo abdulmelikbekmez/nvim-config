@@ -3,6 +3,14 @@ if not ok then
     return
 end
 
+local function fg(name)
+    return function()
+        ---@type {foreground?:number}?
+        local hl = vim.api.nvim_get_hl_by_name(name, true)
+        return hl and hl.foreground and { fg = string.format("#%06x", hl.foreground) }
+    end
+end
+
 local lsp = vim.lsp
 -- For mode, only show the first char (or first two chars to distinguish
 -- different VISUALs) plus a fancy icon
@@ -86,6 +94,16 @@ lualine.setup {
         },
         lualine_c = {
             {
+                'diagnostics',
+                sources = { "nvim_diagnostic" },
+                --[[ symbols = { error = 'E:', warn = 'W:', info = 'I:', hint = 'H:' }, ]]
+                -- symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
+                symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
+            },
+            {
+                "filetype", icon_only = true, separator = "", padding = { left = 1, right = 0 }
+            },
+            {
                 'filename',
                 path = 1,
                 symbols = {
@@ -99,16 +117,18 @@ lualine.setup {
         -- Right
         lualine_x = {
             {
-                lsp_progress,
+                function() return require("noice").api.status.command.get() end,
+                cond = function() return package.loaded["noice"] and require("noice").api.status.command.has() end,
+                color = fg("Statement")
             },
             {
-                'diagnostics',
-                sources = { "nvim_diagnostic" },
-                --[[ symbols = { error = 'E:', warn = 'W:', info = 'I:', hint = 'H:' }, ]]
-                -- symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
-                symbols = { error = ' ', warn = ' ', info = ' ', hint = ' ' },
+                function() return require("noice").api.status.mode.get() end,
+                cond = function() return package.loaded["noice"] and require("noice").api.status.mode.has() end,
+                color = fg("Constant"),
             },
-
+            {
+                lsp_progress,
+            },
             {
                 'diff',
                 --[[ symbols = { added = '+', modified = '~', removed = '-' }, ]]
