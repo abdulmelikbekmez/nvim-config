@@ -5,6 +5,7 @@ return {
             'nvim-lua/plenary.nvim',
             'nvim-telescope/telescope-ui-select.nvim',
         },
+        cmd = "Telescope",
         opts = function()
             local actions = require("telescope.actions")
             local telescope = require("telescope")

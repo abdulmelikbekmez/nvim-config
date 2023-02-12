@@ -46,7 +46,7 @@ return {
             }
             return {
                 signs = signs,
-                ensure_installed = { "rust_analyzer", "pyright" },
+                ensure_installed = { "rust_analyzer", "pyright", "lua_ls" },
                 config = {
                     virtual_text = true,
                     -- show signs

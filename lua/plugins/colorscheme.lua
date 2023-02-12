@@ -33,7 +33,16 @@ return {
         "EdenEast/nightfox.nvim",
         -- enabled = false
         config = function(_, _)
-            vim.cmd("colorscheme duskfox")
+            vim.cmd("colorscheme nordfox")
         end
+    },
+    {
+        'folke/tokyonight.nvim',
+        config = function(_, _)
+            --[[ vim.cmd("colorscheme tokyonight") ]]
+        end
+
     }
+
+
 }
