@@ -4,12 +4,16 @@ return {
         dependencies = {
             'nvim-lua/plenary.nvim',
             'nvim-telescope/telescope-ui-select.nvim',
+            "ahmedkhalf/project.nvim",
         },
         cmd = "Telescope",
         opts = function()
             local actions = require("telescope.actions")
             local telescope = require("telescope")
+
             telescope.load_extension("ui-select")
+            telescope.load_extension("projects")
+
             return {
                 defaults = {
                     vimgrep_arguments = {
@@ -23,7 +27,7 @@ return {
                         "--ignore-file",
                         ".gitignore",
                     },
-                    file_ignore_patterns = { "node_modules", "build", "bin" },
+                    file_ignore_patterns = { "node_modules", "build", "bin", "target" },
 
                     prompt_prefix = " ",
                     selection_caret = " ",

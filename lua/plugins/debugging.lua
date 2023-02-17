@@ -8,6 +8,16 @@ return {
                 dapui.setup()
             end
         },
+        keys = {
+            { "<F5>",       "<cmd> DapContinue <cr>",         desc = "Continue debugging" },
+            { "<F9>",       "<cmd> DapTerminate <cr>",        desc = "Terminate debugging" },
+            { "<F10>",      "<cmd> DapStepOver <cr>",         desc = "Step Over" },
+            { "<F11>",      "<cmd> DapStepInto <cr>",         desc = "Step Into" },
+            { "<F12>",      "<cmd> DapStepOut <cr>",          desc = "Step Out" },
+
+            { "<leader>db", "<cmd> DapToggleBreakPoint <cr>", desc = "Toggle BreakPoint" },
+            { "<leader>dr", "<cmd> DapToggleRepl <cr>",       desc = "Toggle Repl" },
+        },
         config = function(_, _)
             local dap = require("dap")
             local dapui = require("dapui")

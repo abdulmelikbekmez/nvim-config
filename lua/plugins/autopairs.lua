@@ -4,6 +4,7 @@ return {
         dependencies = {
             "hrsh7th/nvim-cmp",
         },
+        event = "InsertEnter",
         config = function(_, opts)
             local npairs = require("nvim-autopairs")
             npairs.setup(opts)

@@ -60,12 +60,3 @@ keymap("x", "J", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "K", ":move '<-2<CR>gv-gv", opts)
 keymap("x", "<A-j>", ":move '>+1<CR>gv-gv", opts)
 keymap("x", "<A-k>", ":move '<-2<CR>gv-gv", opts)
-
-
--- Debugging --
-
-keymap("n", "<F5>", "<Cmd> lua require'dap'.continue()<CR>", opts)
-keymap("n", "<F9>", "<Cmd> lua require'dap'.terminate()<CR>", opts)
-keymap("n", "<F10>", "<Cmd> lua require'dap'.step_over()<CR>", opts)
-keymap("n", "<F11>", "<Cmd> lua require'dap'.step_into()<CR>", opts)
-keymap("n", "<F12>", "<Cmd> lua require'dap'.stop_out()<CR>", opts)

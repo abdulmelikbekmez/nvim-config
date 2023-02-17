@@ -106,19 +106,10 @@ return {
                 },
                 d = {
                     name = "Debugging",
-                    b = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Toggle Breakpoint" },
-                    r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Open Repl" },
                     q = { "<cmd>lua require'dapui'.close()<cr>", "Close UI" },
                 },
                 o = {
                     name = "Overseer Task Manager",
-                    t = { "<cmd>OverseerToggle<cr>", "Toggle Task Editor" },
-                    a = { "<cmd>OverseerTaskAction<cr>", "Action" },
-                    b = { "<cmd>OverseerBuild<cr>", "Build" },
-                    r = { "<cmd>OverseerRun<cr>", "Run" },
-                    s = { "<cmd>OverseerSaveBundle<cr>", "Save Bundle" },
-                    l = { "<cmd>OverseerLoadBundle<cr>", "Load Bundle" },
-                    d = { "<cmd>OverseerDeleteBundle<cr>", "Delete Bundle" },
                 },
             }
 

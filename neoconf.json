@@ -1,7 +1,5 @@
 {
     "lspconfig": {
-        "rust_analyzer": {
-            "rust-analyzer.inlayHints.typeHints.enable": true
-        }
+        "rust_analyzer": {}
     }
 }
