@@ -15,7 +15,7 @@ return {
             { "<F11>",      "<cmd> DapStepInto <cr>",         desc = "Step Into" },
             { "<F12>",      "<cmd> DapStepOut <cr>",          desc = "Step Out" },
 
-            { "<leader>db", "<cmd> DapToggleBreakPoint <cr>", desc = "Toggle BreakPoint" },
+            { "<leader>db", "<cmd> DapToggleBreakpoint <cr>", desc = "Toggle BreakPoint" },
             { "<leader>dr", "<cmd> DapToggleRepl <cr>",       desc = "Toggle Repl" },
         },
         config = function(_, _)
