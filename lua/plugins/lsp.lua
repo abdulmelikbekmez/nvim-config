@@ -85,7 +85,7 @@ return {
                     vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc, noremap = true, silent = true })
                 end
                 nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
-                nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition")
+                --[[ nmap("gd", vim.lsp.buf.definition, "[G]oto [D]efinition") ]]
                 nmap("K", vim.lsp.buf.hover, "Hover")
                 nmap("gI", function() require("telescope.builtin").lsp_implementations() end, "[G]oto [I]mplementation")
                 nmap("<c-k>", vim.lsp.buf.signature_help, "Signature Help")
