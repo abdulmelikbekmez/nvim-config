@@ -9,6 +9,8 @@ return {
             { "<leader>os", "<cmd>OverseerSaveBundle<cr>",   desc = "Save Bundle" },
             { "<leader>ol", "<cmd>OverseerLoadBundle<cr>",   desc = "Load Bundle" },
             { "<leader>od", "<cmd>OverseerDeleteBundle<cr>", desc = "Delete Bundle" },
+
+            { "<F5>",       "<cmd>OverseerRun<cr>",          desc = "Delete Bundle" },
         },
         config = function(_, _)
             require("overseer").setup()
