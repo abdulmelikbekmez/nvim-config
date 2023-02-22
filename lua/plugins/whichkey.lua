@@ -20,8 +20,7 @@ return {
                     "Buffers",
                 },
                 ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" },
-                ["w"] = { "<cmd>w!<CR>", "Save" },
-                ["q"] = { "<cmd>q!<CR>", "Quit" },
+                ["q"] = { "<cmd>wqa<CR>", "Save and Quit" },
                 ["c"] = { "<cmd>bdelete!<CR>", "Close Buffer" },
                 ["h"] = { "<cmd>nohlsearch<CR>", "No Highlight" },
                 ["f"] = {
