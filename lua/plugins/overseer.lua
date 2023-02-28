@@ -10,11 +10,12 @@ return {
             { "<leader>ol", "<cmd>OverseerLoadBundle<cr>",   desc = "Load Bundle" },
             { "<leader>od", "<cmd>OverseerDeleteBundle<cr>", desc = "Delete Bundle" },
 
-            { "<F5>",       "<cmd>OverseerRun<cr>",          desc = "Delete Bundle" },
+            { "<F4>",       "<cmd>OverseerRun<cr>",          desc = "Overseer Run" },
         },
-        config = function(_, _)
-            require("overseer").setup()
+        config = function(_, opts)
+            require("overseer").setup(opts)
         end,
+        opts = {},
         dependencies = {
             "stevearc/dressing.nvim",
             "rcarriga/nvim-notify",
