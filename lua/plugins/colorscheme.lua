@@ -38,10 +38,10 @@ return {
     },
     {
         'folke/tokyonight.nvim',
+        enabled = true,
         config = function(_, _)
-            --[[ vim.cmd("colorscheme tokyonight") ]]
+            vim.cmd("colorscheme tokyonight")
         end
-
     }
 
 
