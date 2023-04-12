@@ -31,8 +31,6 @@ return {
         "neovim/nvim-lspconfig",
         event = { "BufReadPre", "BufNewFile" },
         dependencies = {
-            { "folke/neoconf.nvim", cmd = "Neoconf",                                config = true },
-            { "folke/neodev.nvim",  opts = { experimental = { pathStrict = true } } },
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
             "hrsh7th/cmp-nvim-lsp",
