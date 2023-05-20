@@ -9,13 +9,13 @@ return {
         opts = {
             ensure_installed = { "c", "cpp", "lua", "python", "rust", "javascript", "typescript", "html", "help",
                 "bash", "vim", "regex", "markdown", "markdown_inline" }, --"all" one of "all", "maintained" (parsers with maintainers), or a list of languages
-            sync_install = false, -- install languages synchronously (only applied to `ensure_installed`)
-            ignore_install = { "" }, -- List of parsers to ignore installing
+            sync_install = false,                                        -- install languages synchronously (only applied to `ensure_installed`)
+            ignore_install = { "help" },                                 -- List of parsers to ignore installing
             autopairs = {
                 enable = true,
             },
             highlight = {
-                enable = true, -- false will disable the whole extension
+                enable = true,    -- false will disable the whole extension
                 disable = { "" }, -- list of language that will be disabled
                 additional_vim_regex_highlighting = true,
             },
