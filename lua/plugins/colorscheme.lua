@@ -1,7 +1,7 @@
 return {
     {
         "Mofiqul/vscode.nvim",
-        enabled = true,
+        enabled = false,
         config = function(_, opts)
             vim.o.background = 'dark'
             local vscode = require("vscode")
@@ -11,7 +11,7 @@ return {
             local c = require('vscode.colors').get_colors()
             return {
                 -- Enable transparent background
-                -- transparent = true,
+                transparent = true,
                 -- Enable italic comment
                 italic_comments = true,
                 -- Disable nvim-tree background color
@@ -38,11 +38,20 @@ return {
     },
     {
         'folke/tokyonight.nvim',
-        enabled = true,
+        enabled = false,
         config = function(_, _)
             vim.cmd("colorscheme tokyonight")
         end
+    },
+    {
+        "sainnhe/sonokai",
+        enabled = true,
+        config = function(_, _)
+            vim.cmd("colorscheme sonokai")
+        end
+
     }
+
 
 
 }

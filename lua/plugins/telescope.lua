@@ -27,7 +27,7 @@ return {
                         "--ignore-file",
                         ".gitignore",
                     },
-                    file_ignore_patterns = { "node_modules", "build", "bin", "target", "lib" },
+                    file_ignore_patterns = { "node_modules", "build", "bin", "target" },
 
                     prompt_prefix = " ",
                     selection_caret = " ",
