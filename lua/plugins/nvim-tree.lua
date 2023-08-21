@@ -5,7 +5,6 @@ return {
     },
     cmd = "NvimTreeToggle",
     opts = function()
-        local tree_cb = require("nvim-tree.config").nvim_tree_callback
         return {
             disable_netrw = true,
             hijack_netrw = true,
@@ -48,14 +47,6 @@ return {
                 width = 30,
                 hide_root_folder = false,
                 side = "right",
-                mappings = {
-                    custom_only = false,
-                    list = {
-                        { key = { "l", "<CR>", "o" }, cb = tree_cb("edit") },
-                        { key = "h",                  cb = tree_cb("close_node") },
-                        { key = "v",                  cb = tree_cb("vsplit") },
-                    },
-                },
                 number = false,
                 relativenumber = false,
             },
