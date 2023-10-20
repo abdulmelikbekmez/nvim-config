@@ -1,7 +1,7 @@
 return {
     {
         "Mofiqul/vscode.nvim",
-        enabled = false,
+        enabled = true,
         config = function(_, opts)
             vim.o.background = 'dark'
             local vscode = require("vscode")
@@ -31,14 +31,14 @@ return {
     },
     {
         "EdenEast/nightfox.nvim",
-        enabled = false,
+        enabled = true,
         config = function(_, _)
             vim.cmd("colorscheme nordfox")
         end
     },
     {
         'folke/tokyonight.nvim',
-        enabled = false,
+        enabled = true,
         config = function(_, _)
             vim.cmd("colorscheme tokyonight")
         end
@@ -49,9 +49,5 @@ return {
         config = function(_, _)
             vim.cmd("colorscheme sonokai")
         end
-
     }
-
-
-
 }
