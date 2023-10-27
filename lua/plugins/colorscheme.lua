@@ -49,5 +49,13 @@ return {
         config = function(_, _)
             vim.cmd("colorscheme sonokai")
         end
+    },
+    {
+        "lunarvim/horizon.nvim",
+        enabled = true,
+        config = function(_, _)
+            vim.cmd("colorscheme horizon")
+        end
+
     }
 }
