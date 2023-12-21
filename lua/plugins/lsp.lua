@@ -1,17 +1,9 @@
 return {
+    -- Formatter
     {
-        "jose-elias-alvarez/null-ls.nvim",
+        'stevearc/conform.nvim',
         event = { "BufReadPre", "BufNewFile" },
-        opts = function()
-            local nls = require("null-ls")
-            local formatting = nls.builtins.formatting
-            return {
-                sources = {
-                    formatting.black,
-                    formatting.beautysh
-                },
-            }
-        end,
+        opts = {},
     },
     {
         "williamboman/mason.nvim",
@@ -45,7 +37,7 @@ return {
             }
             return {
                 signs = signs,
-                ensure_installed = { "rust_analyzer", "pyright", "lua_ls" },
+                ensure_installed = { "rust_analyzer", "pyright", "ruff-lsp", "lua_ls" },
                 config = {
                     virtual_text = true,
                     -- show signs
