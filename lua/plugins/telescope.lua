@@ -27,11 +27,11 @@ return {
                         "--ignore-file",
                         ".gitignore",
                     },
-                    file_ignore_patterns = { "node_modules", "build", "bin", "target" },
+                    -- file_ignore_patterns = { "node_modules", "build", "bin", "target" },
 
                     prompt_prefix = " ",
                     selection_caret = " ",
-                    path_display = { "smart" },
+                    -- path_display = { "smart" },
 
                     mappings = {
                         i = {
@@ -99,17 +99,20 @@ return {
                     },
                 },
                 pickers = {
-                    --[[ lsp_references = { ]]
-                    --[[     theme = "cursor" ]]
-                    --[[ }, ]]
                     quickfix = {
                         theme = "cursor"
                     },
 
                     find_files = {
-                        find_command = { "fd", "--type", "f", "--strip-cwd-prefix" },
-                    }
-                    -- Default configuration for builtin pickers goes here:
+                        find_command = {
+                            "fd",
+                            ".",
+                            "--type",
+                            "file",
+                            -- "--hidden",
+                            "--strip-cwd-prefix"
+                        }
+                    } -- Default configuration for builtin pickers goes here:
                     -- picker_name = {
                     --   picker_config_key = value,
                     --   ...

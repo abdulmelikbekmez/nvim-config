@@ -10,6 +10,7 @@ return {
             "hrsh7th/cmp-cmdline", -- cmdline completions
             "saadparwaiz1/cmp_luasnip",
             "L3MON4D3/LuaSnip",
+            "onsails/lspkind.nvim"
         },
         config = function(_, opt)
             local cmp = require("cmp")
@@ -34,16 +35,36 @@ return {
                 })
             })
         end,
+
         opts = function()
             local cmp = require("cmp")
             local luasnip = require("luasnip")
 
+            local kind_score = {
+                Field = 1,
+                Variable = 2,
+                Class = 3,
+                Method = 4,
+                Keyword = 5
+            }
+
+            local kind_mapper = require("cmp.types").lsp.CompletionItemKind
+
+            local kind_score_sorter = function(entry1, entry2)
+                local kind1 = kind_score[kind_mapper[entry1:get_kind()]] or 100
+                local kind2 = kind_score[kind_mapper[entry2:get_kind()]] or 100
+
+                if kind1 < kind2 then
+                    return true
+                end
+            end
+
             local kind_icons = {
                 Array = " ",
                 Boolean = " ",
-                Class = "",
+                Class = "",
                 Color = "",
-                Constant = "",
+                Constant = "",
                 Constructor = "",
                 Copilot = " ",
                 Enum = "",
@@ -51,18 +72,18 @@ return {
                 Event = "",
                 Field = "",
                 File = "",
-                Folder = "",
-                Function = "",
+                Folder = "󰉋",
+                Function = "",
                 Interface = "",
                 Key = " ",
-                Keyword = "",
+                Keyword = "󰌋",
                 Method = "m",
                 Module = "",
                 Namespace = " ",
                 Null = "ﳠ ",
                 Number = " ",
                 Object = " ",
-                Operator = "",
+                Operator = "",
                 Package = " ",
                 Property = "",
                 Reference = " ",
@@ -75,8 +96,6 @@ return {
                 Value = "",
                 Variable = " ",
             }
-
-
             return {
                 snippet = {
                     expand = function(args)
@@ -86,7 +105,7 @@ return {
                 mapping = cmp.mapping.preset.insert({
                     ["<C-k>"] = cmp.mapping.select_prev_item(),
                     ["<C-j>"] = cmp.mapping.select_next_item(),
-                    ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs( -1), { "i", "c" }),
+                    ["<C-b>"] = cmp.mapping(cmp.mapping.scroll_docs(-1), { "i", "c" }),
                     ["<C-f>"] = cmp.mapping(cmp.mapping.scroll_docs(1), { "i", "c" }),
                     ["<C-Space>"] = cmp.mapping(cmp.mapping.complete(), { "i", "c" }),
                     ["<C-y>"] = cmp.config.disable, -- Specify `cmp.config.disable` if you want to remove the default `<C-y>` mapping.
@@ -100,33 +119,43 @@ return {
                 }),
                 formatting = {
                     fields = { "kind", "abbr", "menu" },
-                    format = function(entry, item)
-                        -- Kind icons
-                        if kind_icons[item.kind] then
-                            item.kind = string.format("%s", kind_icons[item.kind])
-                        end
-                        item.menu = ({
-                                nvim_lsp = "[LSP]",
-                                luasnip = "[Snippet]",
-                                buffer = "[Buffer]",
-                                path = "[Path]",
-                            })[entry.source.name]
-                        return item
+                    format = function(entry, vim_item)
+                        local kind = require("lspkind").cmp_format({ mode = "symbol_text", maxwidth = 50 })(entry,
+                            vim_item)
+                        local strings = vim.split(kind.kind, "%s", { trimempty = true })
+                        kind.kind = " " .. (strings[1] or "") .. " "
+                        kind.menu = "    (" .. (strings[2] or "") .. ")"
+
+                        return kind
                     end,
                 },
                 sources = cmp.config.sources({
-                    { name = "nvim_lsp", },
-                    { name = "luasnip" },
-                    { name = "path" },
-                    { name = "buffer",   keyword_length = 5 },
+                    { name = "nvim_lsp", priority = 10 },
+                    { name = "luasnip",  priority = 9 },
+                    { name = "path",     priority = 8 },
+                    { name = "buffer",   priority = 7, keyword_length = 5 },
                 }),
                 confirm_opts = {
                     behavior = cmp.ConfirmBehavior.Replace,
                     select = false,
                 },
+                sorting = {
+                    priority_weight = 1.0,
+                    comparators = {
+                        cmp.config.compare.score, -- based on :  score = score + ((#sources - (source_index - 1)) * sorting.priority_weight)
+                        cmp.config.compare.locality,
+                        cmp.config.compare.recently_used,
+                        cmp.config.compare.offset,
+                        cmp.config.compare.order,
+                    }
+                },
                 window = {
                     documentation = cmp.config.window.bordered(),
-                    completion = cmp.config.window.bordered(),
+                    completion = {
+                        -- winhighlight = "Normal:Pmenu,FloatBorder:Pmenu,Search:None",
+                        col_offset = -3,
+                        side_padding = 0,
+                    },
                 }
             }
         end,

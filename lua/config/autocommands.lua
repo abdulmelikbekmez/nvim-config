@@ -19,6 +19,15 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
     end
 })
 
+vim.api.nvim_create_autocmd({ "BufNewFile", "BufRead" }, {
+    group = augroup("Sdf to Xml"),
+    pattern = "*.sdf",
+    callback = function()
+        local buf = vim.api.nvim_get_current_buf()
+        vim.api.nvim_buf_set_option(buf, "filetype", "xml")
+    end
+})
+
 -- close some filetypes with <q>
 vim.api.nvim_create_autocmd("FileType", {
     group = augroup("Close With Q"),

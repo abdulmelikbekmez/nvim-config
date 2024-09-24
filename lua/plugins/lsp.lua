@@ -29,15 +29,16 @@ return {
             "hrsh7th/cmp-nvim-lsp",
         },
         opts = function()
+            require("neoconf").setup()
             local signs = {
                 { name = "DiagnosticSignError", text = "" },
                 { name = "DiagnosticSignWarn", text = "" },
-                { name = "DiagnosticSignHint", text = " " },
+                { name = "DiagnosticSignHint", text = "" },
                 { name = "DiagnosticSignInfo", text = " " },
             }
             return {
                 signs = signs,
-                ensure_installed = { "rust_analyzer", "pyright", "ruff-lsp", "lua_ls" },
+                ensure_installed = { "rust_analyzer", "pyright", "ruff_lsp", "lua_ls" },
                 config = {
                     virtual_text = true,
                     -- show signs
